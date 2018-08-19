@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Register</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div class="container">
+        <h1>Register Page</h1>
+        <form method="post" th:object="${registrationModel}">
+        <div class="form-group" th:classappend="${#fields.hasErrors('username')} ? 'has-danger'">
+            <label class="form-control-label" for="inputUsername">Username</label>
+            <input type="text" class="form-control form-control-danger" id="inputUsername" th:field="*{username}"/>
+            <div class="form-control-feedback" th:each="error : ${#fields.errors('username')}" th:text="${error}">Sorry, that username's taken. Try another?</div>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-danger'">
+            <label class="form-control-label" for="inputPassword">Password</label>
+            <input type="password" class="form-control form-control-danger" id="inputPassword" th:field="*{password}"/>
+            <div class="form-control-feedback" th:each="error : ${#fields.errors('password')}" th:text="${error}">Sorry, that username's taken. Try another?</div>
+        </div>
+        <div class="form-group" th:classappend="${passwordsNotMatching != null} ? 'has-danger'">
+            <label class="form-control-label" for="inputConfirmPassword">Confirm Password</label>
+            <input type="password" class="form-control form-control-danger" id="inputConfirmPassword" th:field="*{confirmPassword}"/>
+            <div class="form-control-feedback" th:if="${passwordsNotMatching != null}" th:text="${passwordsNotMatching}">Sorry, that username's taken. Try another?</div>
+        </div>
+            <input type="submit" class="btn btn-primary"/>
+        </form>
+    </div>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100 p-l-85 p-r-85 p-t-55 p-b-55">
+                <form method="post" class="login100-form validate-form flex-sb flex-w" th:object="${registrationModel}">
+					<span class="login100-form-title p-b-32">
+						User registration
+					</span>
+
+                    <span class="txt1 p-b-11">
+						Username
+					</span>
+                    <div class="wrap-input100 validate-input m-b-36" th:classappend="${#fields.hasErrors('username')} ? 'has-danger'" data-validate = "Username is required.">
+                        <input class="input100 form-control form-control-danger" type="text" name="username" th:field="*{username}"/>
+                        <div class="form-control-feedback" th:each="error : ${#fields.errors('username')}" th:text="${error}">Sorry, that username's taken. Try another?</div>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">
+						Email
+					</span>
+                    <div class="wrap-input100 validate-input m-b-36" th:classappend="${#fields.hasErrors('email')} ? 'has-danger'" data-validate = "Email is required.">
+                        <input class="input100 orm-control form-control-danger" type="text" name="email" th:field="*{email}"/>
+                        <div class="form-control-feedback" th:each="error : ${#fields.errors('email')}" th:text="${error}">Sorry, ...</div>
+                        <span class="focus-input100"></span>
+                    </div>
+
+
+                    <span class="txt1 p-b-11">
+						Password
+					</span>
+                    <div class="wrap-input100 validate-input m-b-12" th:classappend="${#fields.hasErrors('password')} ? 'has-danger'" data-validate = "Password is required">
+						<span class="btn-show-pass">
+							<i class="fa fa-eye"></i>
+						</span>
+                        <input class="input100 orm-control form-control-danger" type="password" name="password" th:field="*{password}"/>
+                        <div class="form-control-feedback" th:each="error : ${#fields.errors('password')}" th:text="${error}">Sorry, ...</div>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <span class="txt1 p-b-11">
+						Confirm Password
+					</span>
+                    <div class="wrap-input100 validate-input m-b-12" th:classappend="${#fields.hasErrors('confirmPassword')} ? 'has-danger'" data-validate = "Passwords should match.">
+						<span class="btn-show-pass">
+							<i class="fa fa-eye"></i>
+						</span>
+                        <input class="input100 orm-control form-control-danger" type="confirmPassword" name="confirmPassword" th:field="*{confirmPassword}"/>
+                        <div class="form-control-feedback" th:each="error : ${#fields.errors('confirmPassword')}" th:text="${error}">Sorry, ...</div>
+                        <span class="focus-input100"></span>
+                    </div>
+
+                    <div class="flex-sb-m w-full p-b-48">
+                        <!--<div class="contact100-form-checkbox">-->
+                        <!--<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">-->
+                        <!--<label class="label-checkbox100" for="ckb1">-->
+                        <!--Remember me-->
+                        <!--</label>-->
+                        <!--</div>-->
+
+                        <!--<div>-->
+                        <!--<a href="#" class="txt3">-->
+                        <!--Forgot Password?-->
+                        <!--</a>-->
+                        <!--</div>-->
+                    </div>
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn">
+                            Register
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <script th:src="@{/jquery/jquery.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
